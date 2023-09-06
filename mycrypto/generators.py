@@ -3,7 +3,7 @@ from .utils.miller_rabin import miller_rabin
 from .modular_exponentiation import modular_exponentiation
 
 
-def generate_prime(l: int, r: int, k=20) -> int:
+def generate_prime(l: int, r: int, k: int = 20) -> int:
     """
     Функция, генерирующая случайное простое число.
 
@@ -19,7 +19,7 @@ def generate_prime(l: int, r: int, k=20) -> int:
             return candidate
 
 
-def generate_sophie_germain(l: int, r: int, k=20) -> int:
+def generate_sophie_germain(l: int, r: int, k: int = 20) -> int:
     """
     Функция, генерирующая случайное число p, которое является числом Софи Жермен.
 
@@ -28,7 +28,7 @@ def generate_sophie_germain(l: int, r: int, k=20) -> int:
     :param k: Количество раундов.
     :return: Случайное число Софи Жермен p, такое что p и 2*p + 1 оба являются простыми числами.
     """
-    
+
     while True:
         candidate = generate_prime(l // 2, (r - 1) // 2, k)
         if miller_rabin(p := candidate * 2 + 1):
