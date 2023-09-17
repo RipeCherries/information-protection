@@ -14,7 +14,7 @@ def generalized_gcd(a: int, b: int) -> tuple[int, int, int]:
         raise ValueError('Второе число не натуральное!')
 
     if a < b:
-        raise ValueError('Первое число не может быть меньше второго!')
+        a, b = b, a
 
     u = a, 1, 0
     v = b, 0, 1
