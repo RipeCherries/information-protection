@@ -11,7 +11,7 @@ def is_composite(a: int, t: int, n: int, s: int) -> bool:
     :param s: Неотрицательное целое число, такое что n - 1 = 2^s * t.
     :return: True, если число n составное (не простое), и False, если число n вероятно простое.
     """
-    
+
     x = modular_exponentiation(a, t, n)
 
     if x == 1 or x == n - 1:
