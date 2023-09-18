@@ -1,4 +1,7 @@
+import math
 import random
+
+from . import generalized_gcd
 from .utils.miller_rabin import miller_rabin
 from .modular_exponentiation import modular_exponentiation
 
@@ -35,26 +38,32 @@ def generate_sophie_germain(l: int, r: int, k: int = 20) -> int:
             return p
 
 
-def generate_primitive_root(l: int, r: int, p: int) -> int:
+def generate_primitive_root(p: int) -> int:
     """
-    Функция, генерирующая первообразный корень .
+    Функция, генерирующая первообразный корень.
 
-    :param l: Начальное значение интервала.
-    :param r: Конечное значение интервала.
     :param p: число Софи Жермен.
     :return: Первообразный корень.
     """
 
     while True:
-        candidate = random.randint(l, r)
-        if modular_exponentiation(candidate, p - 1, p) != 1:
-            continue
-
-        flag = True
-        for i in range(1, p - 1):
-            if modular_exponentiation(candidate, i, p) == 1:
-                flag = False
-                break
-
-        if flag:
+        candidate = random.randint(2, p)
+        if modular_exponentiation(candidate, (p - 1) // 2, p) != 1:
             return candidate
+
+
+def generate_mutually_prime(p: int):
+    while True:
+        candidate = random.randrange(2, p)
+        if math.gcd(p, candidate) == 1:
+            return candidate
+
+
+def generate_c_d(p: int):
+    c = generate_mutually_prime(p)
+    gcd, _, d = generalized_gcd(c, p)
+
+    while d < 0:
+        d += p
+
+    return c, d
