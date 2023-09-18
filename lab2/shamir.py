@@ -3,7 +3,7 @@ from mycrypto import *
 
 
 def encrypt_data(data, power, mod):
-    return [pow(byte, power, mod) for byte in data]
+    return [modular_exponentiation(byte, power, mod) for byte in data]
 
 
 def write_bytes_to_file(data, file_name):
