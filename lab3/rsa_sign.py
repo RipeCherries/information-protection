@@ -13,7 +13,7 @@ def rsa_sign(message):
     n = p * q
     phi = (p - 1) * (q - 1)
 
-    # открытый и закрытый ключи
+    # c - закрытый, d - открытый
     c, d = generate_c_d(phi)
     if c < 0:
         c += phi
