@@ -17,7 +17,7 @@ def elgamal_sign(message):
     r = modular_exponentiation(g, k, p)
 
     u = (h_int - x * r) % (p - 1)
-    gcd, kk, _ = generalized_gcd(k, p - 1)
+    gcd, _, kk = generalized_gcd(k, p - 1)
 
     sign = (kk * u) % (p - 1)
 
